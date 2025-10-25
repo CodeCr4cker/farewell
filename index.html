@@ -832,7 +832,7 @@
     <!-- Curtain -->
     <div class="curtain-container" id="curtain">
         <div class="curtain-left">
-            <div class="curtain-text">Welcome to Farewell 2025</div>
+           <!-- <div class="curtain-text">Welco</div> -->
         </div>
         <div class="curtain-right"></div>
         <div class="curtain-instruction">
@@ -874,7 +874,7 @@
                     <p><span class="highlight">28 December 2025</span></p>
                     <p>at <span class="highlight">Ashirwad Garden</span>, Ratu, Ranchi</p>
                     <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--text-muted);">
-                        Organized by Class 12th, Session 2025-26, BL Academy
+                        Organized by Class 12th, Session 2025-26
                     </p>
                 </div>
 
@@ -911,10 +911,10 @@
                 <div class="lock-icon">
                     <i class="fas fa-lock"></i>
                 </div>
-                <p class="lock-message">
+             <!--   <p class="lock-message">
                     This gallery contains 40 photos and 10 videos of our special memories.<br>
                     Enter the access code to unlock.
-                </p>
+                </p> -->
                 <button class="btn-primary" onclick="openGalleryModal()">
                     <i class="fas fa-key"></i> Enter Access Code
                 </button>
@@ -934,10 +934,10 @@
                 Can't wait to make this farewell memorable with you!
             </p>
             <p class="footer-text">
-                Contact: <a href="https://its-divyanshu.netlify.app/" class="footer-link">Divyanshu Pandey</a>
+                 <a href="https://its-divyanshu.netlify.app/" class="footer-link">Contact Me</a>
             </p>
             <p class="footer-text" style="margin-top: 1rem;">
-                © 2025 BL Academy
+                © Divyanshu Pandey 
             </p>
         </footer>
     </div>
@@ -1017,18 +1017,18 @@
         
         // User database for personal invitations (username: {password, name, birthYear})
         const userDatabase = {
-            'divyanshu': { password: 'div123', name: 'Divyanshu Pandey', birthYear: 2007 },
-            'rahul': { password: 'rahul456', name: 'Rahul Kumar', birthYear: 2006 },
-            'priya': { password: 'priya789', name: 'Priya Sharma', birthYear: 2007 },
-            'amit': { password: 'amit321', name: 'Amit Singh', birthYear: 2006 },
-            'neha': { password: 'neha654', name: 'Neha Verma', birthYear: 2007 },
-            'rohit': { password: 'rohit987', name: 'Rohit Gupta', birthYear: 2006 },
-            'sneha': { password: 'sneha147', name: 'Sneha Patel', birthYear: 2007 },
-            'vikram': { password: 'vikram258', name: 'Vikram Reddy', birthYear: 2006 },
-            'anjali': { password: 'anjali369', name: 'Anjali Nair', birthYear: 2007 },
-            'arjun': { password: 'arjun741', name: 'Arjun Mehta', birthYear: 2006 },
-            'pooja': { password: 'pooja852', name: 'Pooja Das', birthYear: 2007 },
-            'karan': { password: 'karan963', name: 'Karan Joshi', birthYear: 2006 }
+            'divyanshu': { password: 'div123', name: 'Divyanshu Pandey' },
+            'rahul': { password: 'rahul456', name: 'Rahul Kumar'},
+            'priya': { password: 'priya789', name: 'Priya Sharma'},
+            'amit': { password: 'amit321', name: 'Amit Singh'},
+            'neha': { password: 'neha654', name: 'Neha Verma' },
+            'rohit': { password: 'rohit987', name: 'Rohit Gupta'},
+            'sneha': { password: 'sneha147', name: 'Sneha Patel'},
+            'vikram': { password: 'vikram258', name: 'Vikram Reddy'},
+            'anjali': { password: 'anjali369', name: 'Anjali Nair' },
+            'arjun': { password: 'arjun741', name: 'Arjun Mehta'},
+            'pooja': { password: 'pooja852', name: 'Pooja Das'},
+            'karan': { password: 'karan963', name: 'Karan Joshi'}
         };
         
         let galleryUnlocked = false;
@@ -1125,7 +1125,7 @@
 
         // Countdown
         function startCountdown() {
-            const countDownDate = new Date('Dec 28, 2024 15:00:00').getTime();
+            const countDownDate = new Date('Dec 28, 2025 15:00:00').getTime();
             
             const timer = setInterval(() => {
                 const now = new Date().getTime();
