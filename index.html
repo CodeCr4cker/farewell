@@ -1076,31 +1076,52 @@
             }
         };
         
-        // Corrected Gallery Photo Links - Replace in your HTML file
+        // FIXED PHOTO LINKS - Using jsDelivr CDN (Works with CORS!)
+// Replace your PHOTO_LINKS array with this
+
 const PHOTO_LINKS = [
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(1).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(2).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(3).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(4).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(5).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(6).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(7).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(8).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(9).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(10).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(11).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(12).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(13).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(14).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(15).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(16).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(17).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(18).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(19).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(20).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(21).jpg',
-    'https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/B%20L%20Academy(22).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(1).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(2).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(3).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(4).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(5).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(6).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(7).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(8).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(9).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(10).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(11).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(12).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(13).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(14).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(15).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(16).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(17).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(18).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(19).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(20).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(21).jpg',
+    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(22).jpg',
 ];
+
+// WHAT CHANGED:
+// ❌ OLD: https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/...
+// ✅ NEW: https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/...
+
+// jsDelivr automatically serves from the latest commit and includes proper CORS headers!
+
+// INSTRUCTIONS:
+// 1. Open your HTML file in a text editor
+// 2. Find the PHOTO_LINKS array (around line 1088)
+// 3. Replace the entire array with this one
+// 4. Save the file
+// 5. Hard refresh your browser (Ctrl+Shift+R or Cmd+Shift+R)
+// 6. Enter gallery code: 12BL25
+// 7. Photos should now display!
+
+// ALTERNATIVE METHOD - Find & Replace:
+// Find:    https://github.com/CodeCr4cker/Web-Storage/blob/main/
+// Replace: https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/
         
         const VIDEO_LINKS = [
             // Add your video URLs here (one per line)
