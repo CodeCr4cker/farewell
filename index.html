@@ -4,7 +4,7 @@
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/favicon.jpg" type="image/jpg" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <title>Golden Days of Our Batch</title>
+  <title>Golden Days of Our Batch</title>
         <meta name="description" content="Ending with Beautiful Beginnings">
          <meta name="description" content="
            This farewell website has been beautifully designed By Divyanshu Pandey to honor 
@@ -15,15 +15,11 @@
     <meta property="og:image" content="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/images/favicon.jpg">
 <!--<meta property="og:url" content="https://farewell2025.netlify.app"> -->
 <meta property="og:type" content="website">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         :root {
             --primary-dark: #0a0e27;
             --secondary-dark: #141b2d;
@@ -41,36 +37,60 @@
             min-height: 100vh;
         }
 
+        /* Loader Styles */
         .loader-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--primary-dark);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 10000;
-            transition: opacity 0.5s ease-out;
+            transition: opacity 0.5s;
+        }
+
+        .loader {
+            text-align: center;
+            color: white;
+        }
+
+        .loader-animation {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            margin: 0 auto 30px;
         }
 
         .loader-ring {
             position: absolute;
-            width: 150px;
-            height: 150px;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             border: 3px solid transparent;
-            border-top-color: var(--accent-gold);
-            animation: rotate 1.5s linear infinite;
+            border-top-color: #ffd700;
+            animation: rotate 2s linear infinite;
         }
 
         .loader-ring:nth-child(2) {
-            width: 120px;
-            height: 120px;
-            border-top-color: var(--accent-purple);
-            animation-duration: 2s;
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+            border-top-color: #ff6b6b;
+            animation-duration: 1.5s;
             animation-direction: reverse;
+        }
+
+        .loader-ring:nth-child(3) {
+            width: 60%;
+            height: 60%;
+            top: 20%;
+            left: 20%;
+            border-top-color: #4ecdc4;
+            animation-duration: 1s;
         }
 
         @keyframes rotate {
@@ -78,6 +98,39 @@
             100% { transform: rotate(360deg); }
         }
 
+        .loader-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: #ffd700;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .loader-text {
+            font-size: 22px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4);
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s ease infinite;
+        }
+
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Curtain Styles */
         .curtain-container {
             position: fixed;
             top: 0;
@@ -85,26 +138,18 @@
             width: 100%;
             height: 100vh;
             z-index: 9999;
-            display: flex;
+            display: none;
             cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.5s ease-in;
         }
 
         .curtain-container.visible {
-            opacity: 1;
+            display: flex;
         }
 
         .curtain-left, .curtain-right {
             width: 50%;
             height: 100%;
-            background: repeating-linear-gradient(
-                to right,
-                #8b0000 0px,
-                #a00000 40px,
-                #6b0000 80px,
-                #8b0000 120px
-            );
+            background: repeating-linear-gradient(to right, #8b0000 0px, #a00000 40px, #6b0000 80px, #8b0000 120px);
             position: relative;
             transition: transform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
@@ -127,26 +172,6 @@
             transform: translateX(100%);
         }
 
-        .curtain-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200%;
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            color: var(--accent-gold);
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-            pointer-events: none;
-            animation: curtainTextPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes curtainTextPulse {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
-        }
-
         .curtain-instruction {
             position: absolute;
             bottom: 100px;
@@ -155,6 +180,7 @@
             color: var(--accent-gold);
             font-size: 1.2rem;
             animation: bounce 2s ease-in-out infinite;
+            z-index: 10;
         }
 
         @keyframes bounce {
@@ -162,6 +188,7 @@
             50% { transform: translateX(-50%) translateY(-10px); }
         }
 
+        /* Navigation */
         .nav-bar {
             position: fixed;
             top: 0;
@@ -211,6 +238,44 @@
             color: var(--accent-gold);
         }
 
+        /* Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 215, 0, 0.6);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Main Content */
+        .main-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        .main-content.visible {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Hero Section */
         .hero-section {
             min-height: 100vh;
             display: flex;
@@ -234,10 +299,10 @@
         }
 
         .hero-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Dancing Script', cursive;
             font-size: 5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-purple));
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 1rem;
@@ -245,12 +310,13 @@
         }
 
         @keyframes titleGlow {
-            0%, 100% { filter: brightness(1); }
-            50% { filter: brightness(1.3); }
+            0%, 100% { filter: brightness(1) drop-shadow(0 0 10px rgba(255, 215, 0, 0.3)); }
+            50% { filter: brightness(1.3) drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)); }
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
             color: var(--text-muted);
             margin-bottom: 2rem;
         }
@@ -262,23 +328,12 @@
             border-radius: 20px;
             padding: 2rem;
             margin: 2rem 0;
-            animation: slideUp 1s ease-out 0.5s both;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .hero-details p {
             margin: 0.5rem 0;
             font-size: 1.1rem;
+            color: var(--text-light);
         }
 
         .highlight {
@@ -286,17 +341,12 @@
             font-weight: 600;
         }
 
+        /* Countdown */
         .countdown-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
             margin: 3rem 0;
-            animation: fadeIn 1s ease-out 1s both;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         .countdown-item {
@@ -327,33 +377,7 @@
             letter-spacing: 1px;
         }
 
-        .countdown-finished {
-            background: rgba(139, 92, 246, 0.15);
-            border: 2px solid var(--accent-gold);
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 3rem 0;
-            animation: pulseGlow 2s ease-in-out infinite;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.6); }
-        }
-
-        .countdown-finished h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--accent-gold);
-            margin-bottom: 1rem;
-        }
-
-        .countdown-finished p {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin: 0.5rem 0;
-        }
-
+        /* Buttons */
         .btn-primary {
             background: linear-gradient(135deg, var(--accent-gold), #b8941f);
             color: var(--primary-dark);
@@ -379,6 +403,7 @@
             border: 2px solid var(--accent-purple);
         }
 
+        /* Gallery Section */
         .gallery-section {
             padding: 5rem 2rem;
             max-width: 1400px;
@@ -410,6 +435,194 @@
             font-size: 1.1rem;
         }
 
+        /* Gallery Navigation */
+        .gallery-nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .gallery-nav-btn {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.25), rgba(255, 107, 107, 0.25));
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            color: #ffd700;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gallery-nav-btn:hover, .gallery-nav-btn.active {
+            background: linear-gradient(135deg, #ffd700, #ffa500);
+            color: #111;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Gallery Tabs */
+        .gallery-tab {
+            display: none;
+        }
+
+        .gallery-tab.active {
+            display: block;
+        }
+
+        /* Old Memories Gallery (Polaroid Style) */
+        .memories-gallery {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            padding: 40px 20px;
+        }
+
+        .memories-gallery.visible {
+            display: grid;
+        }
+
+        .polaroid-card {
+            background: #fff;
+            padding: 15px 15px 60px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .polaroid-card:nth-child(odd) {
+            transform: rotate(-2deg);
+        }
+
+        .polaroid-card:nth-child(even) {
+            transform: rotate(2deg);
+        }
+
+        .polaroid-card:hover {
+            transform: rotate(0deg) scale(1.05) translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.4);
+            z-index: 10;
+        }
+
+        .polaroid-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+        }
+
+        .polaroid-caption {
+            text-align: center;
+            margin-top: 15px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            color: #333;
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+        }
+
+        /* Farewell Gallery (Modern Card Style) */
+        .farewell-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            padding: 40px 20px;
+        }
+
+        .media-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            background: rgba(30, 30, 40, 0.9);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+
+        .media-card:hover {
+            transform: scale(1.03);
+            border-color: #ffd700;
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+        }
+
+        .media-content {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .media-content img, .media-content video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .media-card:hover .media-content img,
+        .media-card:hover .media-content video {
+            transform: scale(1.1);
+        }
+
+        .media-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s;
+        }
+
+        .media-card:hover .media-overlay {
+            transform: translateY(0);
+        }
+
+        .media-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+
+        .media-desc {
+            font-size: 0.95rem;
+            color: #e2e8f0;
+            line-height: 1.4;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 215, 0, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: #111;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .media-card.video:hover .play-icon {
+            opacity: 1;
+        }
+
+        /* Gallery Lock */
         .gallery-lock {
             min-height: 60vh;
             display: flex;
@@ -420,12 +633,10 @@
             border: 2px dashed rgba(212, 175, 55, 0.3);
             border-radius: 20px;
             padding: 3rem;
-            transition: all 0.5s ease-out;
         }
 
-        .gallery-lock.unlocking {
-            opacity: 0;
-            transform: scale(0.9);
+        .gallery-lock.hidden {
+            display: none;
         }
 
         .lock-icon {
@@ -436,8 +647,9 @@
         }
 
         @keyframes lockPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(-5deg); }
+            75% { transform: scale(1.1) rotate(5deg); }
         }
 
         .lock-message {
@@ -447,86 +659,7 @@
             max-width: 500px;
         }
 
-        .gallery-grid {
-            display: none;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .gallery-grid.unlocked {
-            display: grid;
-            animation: gridFadeIn 0.8s ease-out;
-        }
-
-        @keyframes gridFadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .gallery-item {
-            position: relative;
-            aspect-ratio: 1;
-            border-radius: 15px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s;
-            animation: itemPopIn 0.5s ease-out both;
-        }
-
-        .gallery-item:nth-child(n) {
-            animation-delay: calc(0.05s * var(--item-index));
-        }
-
-        @keyframes itemPopIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .gallery-item.video::before {
-            content: '\f04b';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 3rem;
-            color: white;
-            z-index: 1;
-            text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-        }
-
-        .gallery-item.video::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.3);
-        }
-
+        /* Close Gallery Button */
         .close-gallery-btn {
             display: none;
             position: fixed;
@@ -540,31 +673,22 @@
             font-weight: 600;
             cursor: pointer;
             z-index: 1001;
-            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
             transition: all 0.3s;
-            animation: slideInDown 0.5s ease-out;
-        }
-
-        @keyframes slideInDown {
-            from {
-                transform: translateY(-100px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
         }
 
         .close-gallery-btn.visible {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .close-gallery-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(239, 68, 68, 0.5);
+            box-shadow: 0 12px 35px rgba(239, 68, 68, 0.6);
         }
 
+        /* Modals */
         .modal {
             display: none;
             position: fixed;
@@ -581,16 +705,10 @@
 
         .modal.active {
             display: flex;
-            animation: modalFadeIn 0.3s ease-out;
-        }
-
-        @keyframes modalFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         .modal-content {
-            background: var(--secondary-dark);
+            background: linear-gradient(135deg, #1e1e28, #0f0f17);
             border-radius: 20px;
             padding: 2.5rem;
             max-width: 500px;
@@ -612,7 +730,7 @@
         }
 
         .modal-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Dancing Script', cursive;
             font-size: 2rem;
             color: var(--accent-gold);
             text-align: center;
@@ -637,6 +755,11 @@
             outline: none;
             border-color: var(--accent-gold);
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .modal-input.text-left {
+            letter-spacing: normal;
+            text-align: left;
         }
 
         .error-message {
@@ -669,6 +792,7 @@
             color: var(--text-light);
         }
 
+        /* Lightbox */
         .lightbox {
             display: none;
             position: fixed;
@@ -684,7 +808,6 @@
 
         .lightbox.active {
             display: flex;
-            animation: modalFadeIn 0.3s ease-out;
         }
 
         .lightbox-content {
@@ -694,7 +817,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: modalSlideUp 0.3s ease-out;
         }
 
         .lightbox-content img,
@@ -702,15 +824,6 @@
             max-width: 100%;
             max-height: 90vh;
             border-radius: 10px;
-            cursor: zoom-in;
-            transition: transform 0.3s ease;
-        }
-
-        .lightbox-content img.zoomed {
-            cursor: zoom-out;
-            transform: scale(1.5);
-            max-width: none;
-            max-height: none;
         }
 
         .lightbox-close {
@@ -729,7 +842,6 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s;
-            z-index: 10;
         }
 
         .lightbox-close:hover {
@@ -737,74 +849,7 @@
             transform: scale(1.1);
         }
 
-        .footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            background: rgba(0, 0, 0, 0.3);
-            margin-top: 5rem;
-        }
-
-        .footer-text {
-            color: var(--text-muted);
-            margin: 0.5rem 0;
-        }
-
-        .footer-link {
-            color: var(--accent-gold);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-link:hover {
-            color: var(--text-light);
-        }
-
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 3rem;
-            }
-
-            .countdown-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 1rem;
-            }
-
-            .curtain-text {
-                font-size: 2rem;
-            }
-
-            .close-gallery-btn {
-                top: 80px;
-                right: 1rem;
-                padding: 0.8rem 1.5rem;
-                font-size: 0.9rem;
-            }
-
-            .countdown-finished h2 {
-                font-size: 1.8rem;
-            }
-
-            .countdown-finished p {
-                font-size: 1rem;
-            }
-        }
-
-        .main-content {
-            display: none;
-        }
-
-        .main-content.visible {
-            display: block;
-        }
-
+        /* Success Notification */
         .success-notification {
             position: fixed;
             top: 100px;
@@ -840,14 +885,86 @@
                 opacity: 0;
             }
         }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            margin-top: 5rem;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            margin: 0.5rem 0;
+        }
+
+        .footer-link {
+            color: var(--accent-gold);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--text-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+
+            .countdown-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .memories-gallery, .farewell-gallery {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .gallery-nav {
+                flex-direction: column;
+                padding: 0 20px;
+            }
+
+            .close-gallery-btn {
+                top: 80px;
+                right: 1rem;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Loader -->
     <div class="loader-container" id="loader">
-        <div class="loader-ring"></div>
-        <div class="loader-ring"></div>
+        <div class="loader">
+            <div class="loader-animation">
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+                <div class="loader-center"><i class="fas fa-heart"></i></div>
+            </div>
+            <div class="loader-text">Loading Your Memories...</div>
+        </div>
     </div>
 
+    <!-- Curtain -->
     <div class="curtain-container" id="curtain">
         <div class="curtain-left"></div>
         <div class="curtain-right"></div>
@@ -856,37 +973,49 @@
         </div>
     </div>
 
-    <audio id="mainAudio" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <!-- Audio Elements -->
+    <audio id="mainAudio" loop preload="auto">
+        <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/audio/song.mp3" type="audio/mpeg">
     </audio>
-    <audio id="galleryAudio" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+    <audio id="galleryAudio" loop preload="auto">
+        <source src="https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/Farewell-invitation-card/audio/song.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- Close Gallery Button -->
+    <button class="close-gallery-btn" id="closeGalleryBtn">
+        <i class="fas fa-times"></i> Close Gallery
+    </button>
+
+    <!-- Main Content -->
     <div class="main-content" id="mainContent">
+        <!-- Particles -->
+        <div class="particles" id="particles"></div>
+
+        <!-- Navigation -->
         <nav class="nav-bar" id="navBar">
             <div class="nav-content">
                 <div class="nav-logo">Farewell 2025</div>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#details">Details</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
         </nav>
 
+        <!-- Hero Section -->
         <section class="hero-section" id="home">
             <div class="hero-content">
-                <h1 class="hero-title">Farewell</h1>
-                <p class="hero-subtitle">Celebration 2025</p>
+                <h1 class="hero-title">Farewell 2025</h1>
+                <p class="hero-subtitle">Celebration of Memories</p>
                 
                 <div class="hero-details">
                     <p>Join us for an unforgettable evening on</p>
                     <p><span class="highlight">28 December 2025</span></p>
                     <p>at <span class="highlight">Ashirwad Garden</span>, Ratu, Ranchi</p>
-                    <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--text-muted);">
-                        Organized by Class 12th, Session 2025-26
+                    <p style="margin-top: 1rem; font-style: italic;">Dinner & Dancing to Follow</p>
+                    <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 0.5rem;">
+                        Organized by Class 12th, Session 2025-26, BL Academy
                     </p>
                 </div>
 
@@ -894,20 +1023,21 @@
                     <div class="countdown-grid" id="countdown"></div>
                 </div>
 
-                <div>
+                <div style="margin-top: 2rem;">
                     <button class="btn-primary" onclick="openPersonalInvitationModal()">
                         <i class="fas fa-id-card"></i> Personal Invitation
                     </button>
-                    <button class="btn-primary btn-secondary" onclick="downloadPublicInvitation()">
-                        <i class="fas fa-download"></i> Public Invitation
-                    </button>
-                    <button class="btn-primary" onclick="scrollToGallery()">
-                        <i class="fas fa-images"></i> View Gallery
-                    </button>
+                    <a href="https://raw.githubusercontent.com/CodeCr4cker/Farewell-invitation-card/main/assets/Invitation/farewell%20.pdf" class="btn-primary" download>
+                        <i class="fas fa-download"></i> Download Invitation
+                    </a>
+                    <a href="https://goo.gl/maps/5z5xX2hTYzU8VGEJ9" target="_blank" class="btn-primary btn-secondary">
+                        <i class="fas fa-map-marker-alt"></i> View Venue
+                    </a>
                 </div>
             </div>
         </section>
 
+        <!-- Gallery Section -->
         <section class="gallery-section" id="gallery">
             <div class="section-header">
                 <h2 class="section-title">Memory Gallery</h2>
@@ -916,41 +1046,76 @@
                 </p>
             </div>
 
-            <div class="gallery-lock" id="galleryLock">
-                <div class="lock-icon">
-                    <i class="fas fa-lock"></i>
-                </div>
-                <button class="btn-primary" onclick="openGalleryModal()">
-                    <i class="fas fa-key"></i> Enter Access Code
+            <!-- Gallery Navigation -->
+            <div class="gallery-nav">
+                <button class="gallery-nav-btn active" onclick="switchGalleryTab('memories')">
+                    <i class="fas fa-images"></i> Old Memories
+                </button>
+                <button class="gallery-nav-btn" onclick="switchGalleryTab('farewell')">
+                    <i class="fas fa-video"></i> Farewell Day
                 </button>
             </div>
 
-            <div class="gallery-grid" id="galleryGrid"></div>
+            <!-- Old Memories Tab -->
+            <div class="gallery-tab active" id="memoriesTab">
+                <div class="gallery-lock" id="memoriesLock">
+                    <div class="lock-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <p class="lock-message">
+                        Open the old memories album<br>
+                        Click below to view our precious moments
+                    </p>
+                    <button class="btn-primary" onclick="openMemoriesGallery()">
+                        <i class="fas fa-folder-open"></i> Open Album
+                    </button>
+                </div>
+                <div class="memories-gallery" id="memoriesGrid"></div>
+            </div>
+
+            <!-- Farewell Gallery Tab -->
+            <div class="gallery-tab" id="farewellTab">
+                <div class="gallery-lock" id="galleryLock">
+                    <div class="lock-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <p class="lock-message">
+                        This gallery contains special farewell moments<br>
+                        Enter the access code to unlock
+                    </p>
+                    <button class="btn-primary" onclick="openGalleryModal()">
+                        <i class="fas fa-key"></i> Enter Access Code
+                    </button>
+                </div>
+                <div class="farewell-gallery" id="farewellGrid" style="display: none;"></div>
+            </div>
         </section>
 
-        <button class="close-gallery-btn" id="closeGalleryBtn" onclick="closeGallery()">
-            <i class="fas fa-times"></i> Close Gallery
-        </button>
-
+        <!-- Footer -->
         <footer class="footer" id="contact">
             <p class="footer-text">
                 Can't wait to make this farewell memorable with you!
             </p>
             <p class="footer-text">
-                 <a href="https://its-divyanshu.netlify.app/" class="footer-link">Contact Me</a>
+                Just a ping away for any queries: 
+                <a href="https://its-divyanshu.netlify.app/" class="footer-link">Contact Me</a>
+            </p>
+            <p class="footer-text" style="margin-top: 1.5rem;">
+                Join us in our happiness! 💫
             </p>
             <p class="footer-text" style="margin-top: 1rem;">
-                © Divyanshu Pandey 
+                © Divyanshu Pandey
             </p>
         </footer>
     </div>
 
+    <!-- Gallery Access Modal -->
     <div class="modal" id="galleryModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeGalleryModal()">
                 <i class="fas fa-times"></i>
             </button>
-            <h2 class="modal-title">Gallery Access</h2>
+            <h2 class="modal-title">🔒 Gallery Access</h2>
             <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.5rem;">
                 Enter the 6-character access code
             </p>
@@ -961,15 +1126,16 @@
                 placeholder="------"
                 maxlength="6"
             >
-            <div class="error-message" id="errorMessage">
+            <div class="error-message" id="galleryError">
                 Invalid access code. Please try again.
             </div>
-            <button class="btn-primary" style="width: 100%;" onclick="verifyGalleryCode()">
+            <button class="btn-primary" style="width: 100%; margin-top: 1rem;" onclick="verifyGalleryCode()">
                 <i class="fas fa-unlock"></i> Unlock Gallery
             </button>
         </div>
     </div>
 
+    <!-- Personal Invitation Modal -->
     <div class="modal" id="personalInvitationModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closePersonalInvitationModal()">
@@ -981,27 +1147,26 @@
             </p>
             <input 
                 type="text" 
-                class="modal-input" 
+                class="modal-input text-left" 
                 id="username" 
                 placeholder="Username"
-                style="letter-spacing: normal; text-align: left;"
             >
             <input 
                 type="password" 
-                class="modal-input" 
+                class="modal-input text-left" 
                 id="password" 
                 placeholder="Password"
-                style="letter-spacing: normal; text-align: left;"
             >
             <div class="error-message" id="invitationError">
                 Invalid credentials. Please try again.
             </div>
-            <button class="btn-primary" style="width: 100%;" onclick="generatePersonalInvitation()">
+            <button class="btn-primary" style="width: 100%; margin-top: 1rem;" onclick="generatePersonalInvitation()">
                 <i class="fas fa-download"></i> Generate & Download
             </button>
         </div>
     </div>
 
+    <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
         <div class="lightbox-content">
             <button class="lightbox-close" onclick="closeLightbox()">
@@ -1011,16 +1176,14 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-        // ========== CONFIGURATION SECTION - EASY TO UPDATE ==========
+        // ========== CONFIGURATION SECTION ==========
         
-        // Gallery Access Code
         const GALLERY_CODE = '12BL25';
+        const PUBLIC_INVITATION_PDF = 'https://raw.githubusercontent.com/CodeCr4cker/Farewell-invitation-card/main/assets/Invitation/farewell%20.pdf';
         
-        // Public Invitation PDF URL
-        const PUBLIC_INVITATION_PDF = 'https://your-domain.com/public-invitation.pdf';  // Add your public PDF URL here
-        
-        // User Database for Personal Invitations (username: {password, name, pdfUrl})
+        // User Database for Personal Invitations
         const userDatabase = {
             'divyanshu': { 
                 password: 'div123', 
@@ -1031,163 +1194,86 @@
                 password: 'rahul456', 
                 name: 'Rahul Kumar',
                 pdfUrl: 'https://your-domain.com/invitations/rahul-invitation.pdf'
-            },
-            'priya': { 
-                password: 'priya789', 
-                name: 'Priya Sharma',
-                pdfUrl: 'https://your-domain.com/invitations/priya-invitation.pdf'
-            },
-            'amit': { 
-                password: 'amit321', 
-                name: 'Amit Singh',
-                pdfUrl: 'https://your-domain.com/invitations/amit-invitation.pdf'
-            },
-            'neha': { 
-                password: 'neha654', 
-                name: 'Neha Verma',
-                pdfUrl: 'https://your-domain.com/invitations/neha-invitation.pdf'
-            },
-            'rohit': { 
-                password: 'rohit987', 
-                name: 'Rohit Gupta',
-                pdfUrl: 'https://your-domain.com/invitations/rohit-invitation.pdf'
-            },
-            'sneha': { 
-                password: 'sneha147', 
-                name: 'Sneha Patel',
-                pdfUrl: 'https://your-domain.com/invitations/sneha-invitation.pdf'
-            },
-            'vikram': { 
-                password: 'vikram258', 
-                name: 'Vikram Reddy',
-                pdfUrl: 'https://your-domain.com/invitations/vikram-invitation.pdf'
-            },
-            'anjali': { 
-                password: 'anjali369', 
-                name: 'Anjali Nair',
-                pdfUrl: 'https://your-domain.com/invitations/anjali-invitation.pdf'
-            },
-            'arjun': { 
-                password: 'arjun741', 
-                name: 'Arjun Mehta',
-                pdfUrl: 'https://your-domain.com/invitations/arjun-invitation.pdf'
-            },
-            'pooja': { 
-                password: 'pooja852', 
-                name: 'Pooja Das',
-                pdfUrl: 'https://your-domain.com/invitations/pooja-invitation.pdf'
-            },
-            'karan': { 
-                password: 'karan963', 
-                name: 'Karan Joshi',
-                pdfUrl: 'https://your-domain.com/invitations/karan-invitation.pdf'
             }
+            // Add more users as needed
         };
         
-        // FIXED PHOTO LINKS - Using jsDelivr CDN (Works with CORS!)
-// Replace your PHOTO_LINKS array with this
+        // Old Memories Data
+        const memoriesData = [
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(1).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(2).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(3).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(4).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(5).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(6).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(7).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(8).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(9).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(10).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(11).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(12).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(13).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(14).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(15).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(16).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(17).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(18).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(19).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(20).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(21).jpg' },
+            { type: 'photo', url: 'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(22).jpg' },
 
-const PHOTO_LINKS = [
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(1).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(2).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(3).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(4).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(5).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(6).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(7).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(8).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(9).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(10).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(11).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(12).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(13).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(14).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(15).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(16).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(17).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(18).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(19).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(20).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(21).jpg',
-    'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(22).jpg',
-];
+                                        
+                                        
+                                        
 
-// WHAT CHANGED:
-// ❌ OLD: https://raw.githubusercontent.com/CodeCr4cker/Web-Storage/main/...
-// ✅ NEW: https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/...
 
-// jsDelivr automatically serves from the latest commit and includes proper CORS headers!
-
-// INSTRUCTIONS:
-// 1. Open your HTML file in a text editor
-// 2. Find the PHOTO_LINKS array (around line 1088)
-// 3. Replace the entire array with this one
-// 4. Save the file
-// 5. Hard refresh your browser (Ctrl+Shift+R or Cmd+Shift+R)
-// 6. Enter gallery code: 12BL25
-// 7. Photos should now display!
-
-// ALTERNATIVE METHOD - Find & Replace:
-// Find:    https://github.com/CodeCr4cker/Web-Storage/blob/main/
-// Replace: https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/
+        ];
+        
+        // Farewell Gallery Data (Photos from GitHub)
+        const PHOTO_LINKS = [
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(1).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(2).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(3).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(4).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(5).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(6).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(7).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(8).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(9).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(10).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(11).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(12).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(13).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(14).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(15).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(16).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(17).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(18).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(19).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(20).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(21).jpg',
+            'https://cdn.jsdelivr.net/gh/CodeCr4cker/Web-Storage/Farewell-invitation-card/images/B%20L%20Academy(22).jpg'
+        ];
         
         const VIDEO_LINKS = [
-            // Add your video URLs here (one per line)
-            'https://www.w3schools.com/html/mov_bbb.mp4',
-            'https://www.w3schools.com/html/movie.mp4',
-            // Add more video URLs as needed
+            // Add your video URLs here
+            'https://www.w3schools.com/html/mov_bbb.mp4'
         ];
         
-        // Video Thumbnail Links (optional - one for each video)
-        const VIDEO_THUMBNAILS = [
-            'https://picsum.photos/300/300?random=50',
-            'https://picsum.photos/300/300?random=51',
-            // Add more thumbnail URLs matching your videos
-        ];
+        // ========== END OF CONFIGURATION ==========
         
-        // Message to display after countdown finishes
-        const COUNTDOWN_FINISHED_MESSAGE = {
-            title: '🎉 The Big Day is Here! 🎉',
-            subtitle: 'Hope you had an amazing time at the farewell!',
-            message: 'Thank you for being part of this incredible journey. May all your dreams come true! 💫'
-        };
-        
-        // ========== END OF CONFIGURATION SECTION ==========
-        
+        // Global Variables
         let galleryUnlocked = false;
+        let memoriesOpened = false;
+        let currentTab = 'memories';
         let currentLightboxIndex = 0;
-        let galleryItems = [];
+        let currentGalleryData = [];
         let mainAudio, galleryAudio;
         let isMainAudioPlaying = false;
         let isGalleryAudioPlaying = false;
-        let imageZoomed = false;
-        let countdownFinished = false;
 
-        // Generate gallery data from provided links
-        function generateGalleryData() {
-            const items = [];
-            
-            // Add photos
-            PHOTO_LINKS.forEach((url, index) => {
-                items.push({
-                    type: 'photo',
-                    url: url,
-                    thumb: url
-                });
-            });
-            
-            // Add videos
-            VIDEO_LINKS.forEach((url, index) => {
-                items.push({
-                    type: 'video',
-                    url: url,
-                    thumb: VIDEO_THUMBNAILS[index] || 'https://picsum.photos/300/300?random=' + (50 + index)
-                });
-            });
-            
-            return items;
-        }
-
+        // Initialize on page load
         window.addEventListener('load', () => {
             mainAudio = document.getElementById('mainAudio');
             galleryAudio = document.getElementById('galleryAudio');
@@ -1201,6 +1287,7 @@ const PHOTO_LINKS = [
             }, 2000);
         });
 
+        // Curtain Click Handler
         document.getElementById('curtain').addEventListener('click', function() {
             this.classList.add('open');
             
@@ -1219,9 +1306,50 @@ const PHOTO_LINKS = [
                 
                 observeSection();
                 startCountdown();
+                createParticles();
+                loadMemoriesGallery();
+                snow();
             }, 2000);
         });
 
+        // Confetti Effect
+        function snow() {
+            const duration = 15 * 1000;
+            const animationEnd = Date.now() + duration;
+            function frame() {
+                confetti({
+                    particleCount: 1,
+                    startVelocity: 0,
+                    ticks: 200,
+                    origin: { x: Math.random(), y: -0.1 },
+                    colors: ['#ffd700', '#ff6b6b', '#4ecdc4'],
+                    shapes: ['circle'],
+                    gravity: 0.5,
+                    scalar: 0.8,
+                    drift: 0
+                });
+                if (Date.now() < animationEnd) requestAnimationFrame(frame);
+            }
+            frame();
+        }
+
+        // Create Particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = Math.random() * 4 + 4 + 's';
+                const colors = ['rgba(255, 215, 0, 0.6)', 'rgba(255, 107, 107, 0.6)', 'rgba(78, 205, 196, 0.6)'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Observe Gallery Section
         function observeSection() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1234,6 +1362,7 @@ const PHOTO_LINKS = [
             observer.observe(document.getElementById('gallery'));
         }
 
+        // Countdown Timer
         function startCountdown() {
             const countDownDate = new Date('Dec 28, 2025 15:00:00').getTime();
             
@@ -1241,9 +1370,8 @@ const PHOTO_LINKS = [
                 const now = new Date().getTime();
                 const distance = countDownDate - now;
                 
-                if (distance < 0 && !countdownFinished) {
+                if (distance < 0) {
                     clearInterval(timer);
-                    countdownFinished = true;
                     displayCountdownFinished();
                     return;
                 }
@@ -1255,19 +1383,19 @@ const PHOTO_LINKS = [
                 
                 document.getElementById('countdown').innerHTML = `
                     <div class="countdown-item">
-                        <span class="countdown-number">${days}</span>
+                        <span class="countdown-number">${days.toString().padStart(2, '0')}</span>
                         <span class="countdown-label">Days</span>
                     </div>
                     <div class="countdown-item">
-                        <span class="countdown-number">${hours}</span>
+                        <span class="countdown-number">${hours.toString().padStart(2, '0')}</span>
                         <span class="countdown-label">Hours</span>
                     </div>
                     <div class="countdown-item">
-                        <span class="countdown-number">${minutes}</span>
+                        <span class="countdown-number">${minutes.toString().padStart(2, '0')}</span>
                         <span class="countdown-label">Minutes</span>
                     </div>
                     <div class="countdown-item">
-                        <span class="countdown-number">${seconds}</span>
+                        <span class="countdown-number">${seconds.toString().padStart(2, '0')}</span>
                         <span class="countdown-label">Seconds</span>
                     </div>
                 `;
@@ -1277,28 +1405,137 @@ const PHOTO_LINKS = [
         function displayCountdownFinished() {
             const container = document.getElementById('countdownContainer');
             container.innerHTML = `
-                <div class="countdown-finished">
-                    <h2>${COUNTDOWN_FINISHED_MESSAGE.title}</h2>
-                    <p style="font-size: 1.3rem; margin-top: 1rem;">${COUNTDOWN_FINISHED_MESSAGE.subtitle}</p>
-                    <p style="margin-top: 1rem;">${COUNTDOWN_FINISHED_MESSAGE.message}</p>
+                <div style="background: rgba(139, 92, 246, 0.15); border: 2px solid var(--accent-gold); border-radius: 20px; padding: 2rem; margin: 3rem 0;">
+                    <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--accent-gold); margin-bottom: 1rem;">
+                        🎉 The Big Day is Here! 🎉
+                    </h2>
+                    <p style="font-size: 1.2rem; color: var(--text-light); margin: 0.5rem 0;">
+                        Hope you had an amazing time at the farewell!
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        Thank you for being part of this incredible journey. May all your dreams come true! 💫
+                    </p>
                 </div>
             `;
         }
 
+        // Load Old Memories Gallery
+        function loadMemoriesGallery() {
+            const grid = document.getElementById('memoriesGrid');
+            grid.innerHTML = '';
+            memoriesData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'polaroid-card';
+                card.onclick = () => openLightbox(index, memoriesData);
+                card.innerHTML = `
+                    <img src="${item.url}" alt="${item.caption}" class="polaroid-img">
+                  
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Generate Farewell Gallery Data
+        function generateFarewellData() {
+            const items = [];
+            
+            // Add photos
+            PHOTO_LINKS.forEach((url, index) => {
+                items.push({
+                    type: 'photo',
+                    url: url,
+                    title: `Memory ${index + 1}`,
+                    desc: 'Special farewell moment'
+                });
+            });
+            
+            // Add videos
+            VIDEO_LINKS.forEach((url, index) => {
+                items.push({
+                    type: 'video',
+                    url: url,
+                    title: `Video ${index + 1}`,
+                    desc: 'Farewell highlights'
+                });
+            });
+            
+            return items;
+        }
+
+        // Open Memories Gallery
+        function openMemoriesGallery() {
+            memoriesOpened = true;
+            document.getElementById('memoriesLock').classList.add('hidden');
+            document.getElementById('memoriesGrid').classList.add('visible');
+            document.getElementById('closeGalleryBtn').classList.add('visible');
+            document.getElementById('closeGalleryBtn').onclick = closeMemoriesGallery;
+        }
+
+        // Close Memories Gallery
+        function closeMemoriesGallery() {
+            memoriesOpened = false;
+            document.getElementById('memoriesLock').classList.remove('hidden');
+            document.getElementById('memoriesGrid').classList.remove('visible');
+            document.getElementById('closeGalleryBtn').classList.remove('visible');
+        }
+
+        // Switch Gallery Tab
+        function switchGalleryTab(tab) {
+            currentTab = tab;
+            
+            // Update button states
+            document.querySelectorAll('.gallery-nav-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.closest('.gallery-nav-btn').classList.add('active');
+            
+            // Update tab visibility
+            document.querySelectorAll('.gallery-tab').forEach(tabEl => tabEl.classList.remove('active'));
+            
+            if (tab === 'memories') {
+                document.getElementById('memoriesTab').classList.add('active');
+                if (memoriesOpened) {
+                    document.getElementById('closeGalleryBtn').classList.add('visible');
+                    document.getElementById('closeGalleryBtn').onclick = closeMemoriesGallery;
+                } else {
+                    document.getElementById('closeGalleryBtn').classList.remove('visible');
+                }
+                
+                // Switch back to main audio
+                if (galleryUnlocked && isGalleryAudioPlaying) {
+                    switchAudioToMain();
+                }
+            } else {
+                document.getElementById('farewellTab').classList.add('active');
+                if (galleryUnlocked) {
+                    document.getElementById('closeGalleryBtn').classList.add('visible');
+                    document.getElementById('closeGalleryBtn').onclick = closeFarewellGallery;
+                    
+                    // Switch to gallery audio
+                    if (isMainAudioPlaying) {
+                        switchAudioToGallery();
+                    }
+                } else {
+                    document.getElementById('closeGalleryBtn').classList.remove('visible');
+                }
+            }
+        }
+
+        // Open Gallery Modal
         function openGalleryModal() {
             document.getElementById('galleryModal').classList.add('active');
             document.getElementById('galleryCode').focus();
         }
 
+        // Close Gallery Modal
         function closeGalleryModal() {
             document.getElementById('galleryModal').classList.remove('active');
             document.getElementById('galleryCode').value = '';
-            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('galleryError').style.display = 'none';
         }
 
+        // Verify Gallery Code
         function verifyGalleryCode() {
             const code = document.getElementById('galleryCode').value.trim().toUpperCase();
-            const errorMsg = document.getElementById('errorMessage');
+            const errorMsg = document.getElementById('galleryError');
             
             if (code === GALLERY_CODE) {
                 galleryUnlocked = true;
@@ -1314,135 +1551,172 @@ const PHOTO_LINKS = [
             }
         }
 
+        // Unlock Gallery
         function unlockGallery() {
-            const lockElement = document.getElementById('galleryLock');
-            lockElement.classList.add('unlocking');
+            galleryUnlocked = true;
+            document.getElementById('galleryLock').classList.add('hidden');
+            const grid = document.getElementById('farewellGrid');
+            grid.style.display = 'grid';
+            document.getElementById('closeGalleryBtn').classList.add('visible');
+            document.getElementById('closeGalleryBtn').onclick = closeFarewellGallery;
             
+            // Switch to gallery audio
             if (isMainAudioPlaying) {
-                mainAudio.pause();
-                isMainAudioPlaying = false;
+                switchAudioToGallery();
             }
             
-            galleryAudio.play().then(() => {
-                isGalleryAudioPlaying = true;
-            }).catch(e => console.log('Gallery audio play failed:', e));
+            const farewellData = generateFarewellData();
             
-            setTimeout(() => {
-                lockElement.style.display = 'none';
-                const grid = document.getElementById('galleryGrid');
-                grid.classList.add('unlocked');
+            // Clear any existing gallery content
+            grid.innerHTML = '';
+            
+            farewellData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = `media-card ${item.type}`;
+                card.onclick = () => openLightbox(index, farewellData);
                 
+                const mediaHtml = item.type === 'video' 
+                    ? `<video src="${item.url}"></video><div class="play-icon">▶</div>`
+                    : `<img src="${item.url}" alt="${item.title}">`;
+                
+                card.innerHTML = `
+                    <div class="media-content">
+                        ${mediaHtml}
+                        <div class="media-overlay">
+                            <div class="media-title">${item.title}</div>
+                            <div class="media-desc">${item.desc}</div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Close Farewell Gallery (NEW UPDATED FUNCTION WITH RELOCK)
+        function closeFarewellGallery() {
+            // RELOCK THE GALLERY
+            galleryUnlocked = false;
+            document.getElementById('galleryLock').classList.remove('hidden');
+            const grid = document.getElementById('farewellGrid');
+            grid.style.display = 'none';
+            grid.innerHTML = ''; // Clear gallery content
+            
+            // Switch back to old memories tab
+            currentTab = 'memories';
+            document.querySelectorAll('.gallery-nav-btn').forEach((btn, index) => {
+                if (index === 0) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.gallery-tab').forEach(tabEl => tabEl.classList.remove('active'));
+            document.getElementById('memoriesTab').classList.add('active');
+            
+            if (memoriesOpened) {
                 document.getElementById('closeGalleryBtn').classList.add('visible');
-                
-                galleryItems = generateGalleryData();
-                
-                galleryItems.forEach((item, index) => {
-                    const div = document.createElement('div');
-                    div.className = `gallery-item ${item.type}`;
-                    div.style.setProperty('--item-index', index);
-                    div.onclick = () => openLightbox(index);
-                    
-                    div.innerHTML = `<img src="${item.thumb}" alt="${item.type === 'photo' ? 'Photo' : 'Video'} ${index + 1}">`;
-                    
-                    grid.appendChild(div);
-                });
-            }, 500);
-        }
-
-        function closeGallery() {
-            const grid = document.getElementById('galleryGrid');
-            const lockElement = document.getElementById('galleryLock');
-            
-            grid.style.opacity = '0';
-            grid.style.transform = 'scale(0.95)';
-            
-            document.getElementById('closeGalleryBtn').classList.remove('visible');
-            
-            if (isGalleryAudioPlaying) {
-                galleryAudio.pause();
-                isGalleryAudioPlaying = false;
+                document.getElementById('closeGalleryBtn').onclick = closeMemoriesGallery;
+            } else {
+                document.getElementById('closeGalleryBtn').classList.remove('visible');
             }
             
-            mainAudio.play().then(() => {
-                isMainAudioPlaying = true;
-            }).catch(e => console.log('Main audio play failed:', e));
+            // Switch audio back to main
+            if (isGalleryAudioPlaying) {
+                switchAudioToMain();
+            }
             
-            setTimeout(() => {
-                grid.innerHTML = '';
-                grid.classList.remove('unlocked');
-                grid.style.opacity = '';
-                grid.style.transform = '';
-                
-                lockElement.style.display = 'flex';
-                lockElement.classList.remove('unlocking');
-                
-                galleryUnlocked = false;
-                
-                showSuccessNotification('Gallery Closed');
-            }, 500);
+            // Show notification
+            showSuccessNotification('Farewell Gallery Locked.');
         }
 
-        function openLightbox(index) {
+       // Audio switching functions
+        function switchAudioToGallery() {
+            let mainVolume = mainAudio.volume;
+            const fadeOutMain = setInterval(() => {
+                if (mainVolume > 0.05) {
+                    mainVolume -= 0.05;
+                    mainAudio.volume = mainVolume;
+                } else {
+                    mainAudio.pause();
+                    mainAudio.volume = 1;
+                    isMainAudioPlaying = false;
+                    clearInterval(fadeOutMain);
+                    galleryAudio.play().then(() => {
+                        isGalleryAudioPlaying = true;
+                    }).catch(e => console.log('Gallery audio play failed:', e));
+                }
+            }, 50);
+        }
+
+        function switchAudioToMain() {
+            let galleryVolume = galleryAudio.volume;
+            const fadeOutGallery = setInterval(() => {
+                if (galleryVolume > 0.05) {
+                    galleryVolume -= 0.05;
+                    galleryAudio.volume = galleryVolume;
+                } else {
+                    galleryAudio.pause();
+                    galleryAudio.volume = 1;
+                    isGalleryAudioPlaying = false;
+                    clearInterval(fadeOutGallery);
+                    mainAudio.play().then(() => {
+                        isMainAudioPlaying = true;
+                    }).catch(e => console.log('Main audio play failed:', e));
+                }
+            }, 50);
+        }
+
+        // Lightbox Functions
+        function openLightbox(index, data) {
             currentLightboxIndex = index;
-            document.getElementById('lightbox').classList.add('active');
-            imageZoomed = false;
-            updateLightboxContent();
+            currentGalleryData = data;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxMedia = document.getElementById('lightboxMedia');
+            const item = data[index];
+            
+            if (item.type === 'video') {
+                if (isMainAudioPlaying) mainAudio.pause();
+                if (isGalleryAudioPlaying) galleryAudio.pause();
+                lightboxMedia.innerHTML = `<video src="${item.url}" controls autoplay style="max-width: 90vw; max-height: 80vh;"></video>`;
+                const videoElement = lightboxMedia.querySelector('video');
+                videoElement.addEventListener('ended', resumeAudioAfterVideo);
+                videoElement.addEventListener('pause', resumeAudioAfterVideo);
+            } else {
+                lightboxMedia.innerHTML = `<img src="${item.url}" alt="${item.title || item.caption}">`;
+            }
+            
+            lightbox.classList.add('active');
         }
 
         function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
-            const media = document.getElementById('lightboxMedia');
-            const video = media.querySelector('video');
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            const video = lightbox.querySelector('video');
             
             if (video) {
                 video.pause();
-                if (galleryUnlocked && !isGalleryAudioPlaying) {
+                video.currentTime = 0;
+                video.removeEventListener('ended', resumeAudioAfterVideo);
+                video.removeEventListener('pause', resumeAudioAfterVideo);
+                resumeAudioAfterVideo();
+            }
+        }
+
+        function resumeAudioAfterVideo() {
+            if (currentTab === 'memories' || !galleryUnlocked) {
+                if (!isMainAudioPlaying) {
+                    mainAudio.play().then(() => {
+                        isMainAudioPlaying = true;
+                    }).catch(e => console.log('Resume main audio failed:', e));
+                }
+            } else {
+                if (!isGalleryAudioPlaying) {
                     galleryAudio.play().then(() => {
                         isGalleryAudioPlaying = true;
-                    }).catch(e => console.log('Gallery audio resume failed:', e));
+                    }).catch(e => console.log('Resume gallery audio failed:', e));
                 }
             }
-            
-            imageZoomed = false;
         }
 
-        function updateLightboxContent() {
-            const item = galleryItems[currentLightboxIndex];
-            const media = document.getElementById('lightboxMedia');
-            
-            if (item.type === 'photo') {
-                media.innerHTML = `<img src="${item.url}" alt="Gallery" onclick="toggleImageZoom(event)">`;
-            } else {
-                if (isGalleryAudioPlaying) {
-                    galleryAudio.pause();
-                    isGalleryAudioPlaying = false;
-                }
-                
-                media.innerHTML = `<video controls autoplay style="max-width: 100%; max-height: 90vh;" onended="resumeGalleryAudio()">
-                    <source src="${item.url}" type="video/mp4">
-                </video>`;
-            }
-        }
-
-        function toggleImageZoom(event) {
-            const img = event.target;
-            imageZoomed = !imageZoomed;
-            
-            if (imageZoomed) {
-                img.classList.add('zoomed');
-            } else {
-                img.classList.remove('zoomed');
-            }
-        }
-
-        function resumeGalleryAudio() {
-            if (galleryUnlocked && !isGalleryAudioPlaying) {
-                galleryAudio.play().then(() => {
-                    isGalleryAudioPlaying = true;
-                }).catch(e => console.log('Gallery audio resume failed:', e));
-            }
-        }
-
+        // Personal Invitation Modal
         function openPersonalInvitationModal() {
             document.getElementById('personalInvitationModal').classList.add('active');
             document.getElementById('username').focus();
@@ -1470,155 +1744,22 @@ const PHOTO_LINKS = [
                 return;
             }
             
-            // Download the specific personal invitation PDF for this user
             downloadPDF(user.pdfUrl, `Farewell_Invitation_${user.name.replace(/\s+/g, '_')}.pdf`);
             closePersonalInvitationModal();
             showSuccessNotification(`Personal Invitation for ${user.name} Downloaded!`);
         }
 
-        function downloadPublicInvitation() {
-            // Download the public invitation PDF
-            downloadPDF(PUBLIC_INVITATION_PDF, 'Farewell_Invitation_Public.pdf');
-            showSuccessNotification('Public Invitation Downloaded!');
-        }
-
         function downloadPDF(pdfUrl, filename) {
-            // Create a temporary link element
             const link = document.createElement('a');
             link.href = pdfUrl;
             link.download = filename;
             link.target = '_blank';
-            
-            // Append to body, click, and remove
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
         }
 
-        function createInvitationCard(name, birthYear, isPersonal) {
-            // This function is kept for backward compatibility or future use
-            // Currently not used since PDFs are downloaded directly
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = 1080;
-            canvas.height = 1920;
-            
-            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            gradient.addColorStop(0, '#0a0e27');
-            gradient.addColorStop(0.5, '#141b2d');
-            gradient.addColorStop(1, '#0a0e27');
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            ctx.strokeStyle = '#d4af37';
-            ctx.lineWidth = 8;
-            ctx.strokeRect(60, 60, canvas.width - 120, canvas.height - 120);
-            
-            ctx.strokeStyle = '#8b5cf6';
-            ctx.lineWidth = 3;
-            ctx.strokeRect(80, 80, canvas.width - 160, canvas.height - 160);
-            
-            ctx.fillStyle = '#d4af37';
-            ctx.font = 'bold 60px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('✨', canvas.width / 2, 200);
-            
-            ctx.fillStyle = '#d4af37';
-            ctx.font = 'bold 120px Arial';
-            ctx.fillText('FAREWELL', canvas.width / 2, 350);
-            
-            ctx.font = 'bold 80px Arial';
-            ctx.fillStyle = '#8b5cf6';
-            ctx.fillText('2025', canvas.width / 2, 450);
-            
-            if (isPersonal && name) {
-                ctx.font = '50px Arial';
-                ctx.fillStyle = '#e2e8f0';
-                ctx.fillText('Dear', canvas.width / 2, 580);
-                
-                ctx.font = 'bold 70px Arial';
-                ctx.fillStyle = '#d4af37';
-                const maxWidth = canvas.width - 200;
-                const nameMetrics = ctx.measureText(name);
-                if (nameMetrics.width > maxWidth) {
-                    const scale = maxWidth / nameMetrics.width;
-                    ctx.save();
-                    ctx.translate(canvas.width / 2, 670);
-                    ctx.scale(scale, 1);
-                    ctx.fillText(name, 0, 0);
-                    ctx.restore();
-                } else {
-                    ctx.fillText(name, canvas.width / 2, 670);
-                }
-            } else {
-                ctx.font = 'bold 60px Arial';
-                ctx.fillStyle = '#e2e8f0';
-                ctx.fillText('You\'re Cordially Invited', canvas.width / 2, 620);
-            }
-            
-            ctx.strokeStyle = '#d4af37';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(200, isPersonal ? 760 : 720);
-            ctx.lineTo(canvas.width - 200, isPersonal ? 760 : 720);
-            ctx.stroke();
-            
-            const startY = isPersonal ? 860 : 820;
-            ctx.font = '45px Arial';
-            ctx.fillStyle = '#e2e8f0';
-            ctx.fillText('Join us for an unforgettable evening', canvas.width / 2, startY);
-            
-            ctx.font = 'bold 55px Arial';
-            ctx.fillStyle = '#d4af37';
-            ctx.fillText('28 December 2025', canvas.width / 2, startY + 80);
-            
-            ctx.font = '45px Arial';
-            ctx.fillStyle = '#e2e8f0';
-            ctx.fillText('at 3:00 PM', canvas.width / 2, startY + 150);
-            
-            ctx.font = 'bold 50px Arial';
-            ctx.fillStyle = '#8b5cf6';
-            ctx.fillText('Ashirwad Garden', canvas.width / 2, startY + 250);
-            
-            ctx.font = '40px Arial';
-            ctx.fillStyle = '#94a3b8';
-            ctx.fillText('Ratu, Ranchi', canvas.width / 2, startY + 310);
-            
-            ctx.font = '38px Arial';
-            ctx.fillStyle = '#e2e8f0';
-            ctx.fillText('Dinner & Dancing to Follow', canvas.width / 2, startY + 410);
-            
-            ctx.font = '35px Arial';
-            ctx.fillStyle = '#94a3b8';
-            ctx.fillText('Dress Code: Semi-Formal', canvas.width / 2, startY + 470);
-            
-            ctx.font = '32px Arial';
-            ctx.fillStyle = '#8b5cf6';
-            ctx.fillText('Organized by Class 12th', canvas.width / 2, startY + 560);
-            ctx.fillText('Session 2025-26, BL Academy', canvas.width / 2, startY + 610);
-            
-            ctx.fillStyle = '#d4af37';
-            ctx.font = 'bold 50px Arial';
-            ctx.fillText('✨ 💫 ✨', canvas.width / 2, canvas.height - 200);
-            
-            ctx.font = 'italic 35px Arial';
-            ctx.fillStyle = '#94a3b8';
-            ctx.fillText('Looking forward to celebrating with you!', canvas.width / 2, canvas.height - 100);
-            
-            canvas.toBlob(function(blob) {
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = isPersonal 
-                    ? `Farewell_Invitation_${name.replace(/\s+/g, '_')}.png`
-                    : 'Farewell_Invitation_Public.png';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            });
-        }
-
+        // Success Notification
         function showSuccessNotification(message) {
             const notification = document.createElement('div');
             notification.className = 'success-notification';
@@ -1630,30 +1771,33 @@ const PHOTO_LINKS = [
             }, 3000);
         }
 
-        function scrollToGallery() {
-            document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
-        }
-
+        // Keyboard Events
         document.addEventListener('keydown', (e) => {
-            if (document.getElementById('lightbox').classList.contains('active')) {
+            const lightbox = document.getElementById('lightbox');
+            const galleryModal = document.getElementById('galleryModal');
+            const invitationModal = document.getElementById('personalInvitationModal');
+            
+            if (lightbox.classList.contains('active')) {
                 if (e.key === 'Escape') closeLightbox();
             }
             
-            if (document.getElementById('galleryModal').classList.contains('active')) {
+            if (galleryModal.classList.contains('active')) {
                 if (e.key === 'Enter') verifyGalleryCode();
                 if (e.key === 'Escape') closeGalleryModal();
             }
             
-            if (document.getElementById('personalInvitationModal').classList.contains('active')) {
+            if (invitationModal.classList.contains('active')) {
                 if (e.key === 'Enter') generatePersonalInvitation();
                 if (e.key === 'Escape') closePersonalInvitationModal();
             }
         });
 
+        // Gallery Code Input Formatter
         document.getElementById('galleryCode').addEventListener('input', function(e) {
             this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
         });
 
+        // Smooth Scroll for Navigation Links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1664,6 +1808,20 @@ const PHOTO_LINKS = [
             });
         });
 
+        // Close modals when clicking outside
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+
+        document.getElementById('galleryModal').addEventListener('click', function(e) {
+            if (e.target === this) closeGalleryModal();
+        });
+
+        document.getElementById('personalInvitationModal').addEventListener('click', function(e) {
+            if (e.target === this) closePersonalInvitationModal();
+        });
+
+        // Audio pause/resume on tab visibility change
         document.addEventListener('visibilitychange', function () {
             if (document.hidden) {
                 if (isMainAudioPlaying) mainAudio.pause();
@@ -1673,6 +1831,11 @@ const PHOTO_LINKS = [
                 if (isGalleryAudioPlaying && galleryUnlocked) galleryAudio.play().catch(console.log);
             }
         });
+
+        // Console Easter Egg
+        console.log('%cFarewell 2025 🎉', 'color: #ffd700; font-size: 24px; font-weight: bold;');
+        console.log('%cAccess Code: 12BL25', 'color: #4ecdc4; font-size: 16px;');
+        console.log('%cMade with ❤️ by Divyanshu Pandey', 'color: #8b5cf6; font-size: 14px;');
     </script>
 </body>
 </html>
